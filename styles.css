@@ -89,7 +89,7 @@ p{color:var(--muted)}
 .style-card{background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:0 10px 30px rgba(24,18,16,.06);transition:transform .3s,box-shadow .3s}
 .style-card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
 .style-img{aspect-ratio:4/3;overflow:hidden}
-.style-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.style-img img{width:100%;height:100%;object-fit:cover;object-position:center top;transition:transform .6s}
 .style-card:hover .style-img img{transform:scale(1.06)}
 .style-body{padding:22px}
 .style-note{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--bronze);font-weight:600;margin-bottom:8px}

@@ -93,3 +93,23 @@ function handleBooking(e){
   window.open(wa, '_blank');
   return false;
 }
+
+// Fallback for style card images that fail to load: swap to a warm champagne-silk + espresso monogrammed illustration card
+function handleImgError(img){
+  if (!img || img.dataset.fallbackApplied) return;
+  img.dataset.fallbackApplied = '1';
+  img.onerror = null;
+  var label = img.getAttribute('data-style-name') || img.alt || 'Style';
+  var initials = label.split(/\s+/).filter(Boolean).map(function(w){ return w.charAt(0); }).slice(0,3).join('').toUpperCase();
+  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="750" viewBox="0 0 1000 750">' +
+    '<rect width="1000" height="750" fill="#EFE6DA"/>' +
+    '<rect x="60" y="60" width="880" height="630" rx="26" fill="none" stroke="#181210" stroke-opacity=".12" stroke-width="2"/>' +
+    '<text x="500" y="360" font-family="Georgia, serif" font-size="150" fill="#181210" text-anchor="middle" font-weight="600">' + esc(initials) + '</text>' +
+    '<text x="500" y="430" font-family="system-ui, sans-serif" font-size="26" fill="#181210" text-anchor="middle" opacity=".72">' + esc(label) + '</text>' +
+    '<text x="500" y="620" font-family="system-ui, sans-serif" font-size="16" fill="#181210" text-anchor="middle" opacity=".45" letter-spacing="4">PRICELESS BRAIDS / EXPERIENCE</text>' +
+  '</svg>';
+  img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+  img.style.objectFit = 'cover';
+  img.style.objectPosition = 'center top';
+}
